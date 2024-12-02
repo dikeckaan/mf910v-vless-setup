@@ -23,6 +23,7 @@
             padding: 10px;
             font-size: 16px;
             cursor: pointer;
+            margin-right: 10px;
         }
         pre {
             background-color: #f4f4f4;
@@ -36,9 +37,10 @@
         <h1>VLESS Config Parser</h1>
         <textarea id="vlessUrl" placeholder="VLESS URL'yi buraya yapıştırın"></textarea>
         <button onclick="parseVLESS()">Parse ve Config Üret</button>
+        <button onclick="copyToClipboard()">Clipboard'a Kopyala</button>
+        <button onclick="downloadConfig()">Config'i İndir</button>
         <h2>Oluşturulan Config</h2>
         <pre id="configOutput">Çıktı burada görünecek...</pre>
-        <button onclick="copyToClipboard()">Clipboard'a Kopyala</button>
     </div>
     <script>
         let generatedConfig = '';
@@ -139,6 +141,21 @@
                 .catch((err) => {
                     alert("Config panoya kopyalanamadı: " + err);
                 });
+        }
+
+        function downloadConfig() {
+            if (!generatedConfig) {
+                alert("Henüz bir config oluşturulmadı!");
+                return;
+            }
+
+            const blob = new Blob([generatedConfig], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'config.json';
+            a.click();
+            URL.revokeObjectURL(url);
         }
     </script>
 </body>
