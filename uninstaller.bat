@@ -66,6 +66,12 @@ adb shell update-rc.d -f xray.sh remove
 if NOT %ERRORLEVEL%==0 (
     echo Failed to remove xray from system startup.
 )
+REM Remove xray from system startup
+echo Removing proxy.pac from /usr/zte_web/web/...
+adb shell rm /usr/zte_web/web/proxy.pac
+if NOT %ERRORLEVEL%==0 (
+    echo Failed to remove xray from system startup.
+)
 
 REM Reboot the device to finalize uninstallation
 echo Rebooting the device to finalize uninstallation...

@@ -63,6 +63,11 @@ echo Creating symbolic link for geosite.dat in /usr/bin...
 adb shell ln -s /cache/geosite.dat /usr/bin/geosite.dat
 timeout /t 1 >nul
 
+echo Creating proxy auto config file in /usr/zte_web/web...
+adb push proxy.pac /usr/zte_web/web
+adb shell chmod +x /usr/zte_web/web/proxy.pac
+timeout /t 1 >nul
+
 echo Pushing xray.sh to /etc/init.d...
 adb push xray.sh /etc/init.d
 timeout /t 1 >nul
