@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VLESS Config Parser</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        textarea, input {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 14px;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>VLESS Config Parser</h1>
+        <textarea id="vlessUrl" placeholder="VLESS URL'yi buraya yapıştırın"></textarea>
+        <button onclick="parseVLESS()">Parse ve Config Üret</button>
+        <h2>Oluşturulan Config</h2>
+        <pre id="configOutput">Çıktı burada görünecek...</pre>
+        <button onclick="copyToClipboard()">Clipboard'a Kopyala</button>
+    </div>
+    <script>
+        let generatedConfig = '';
+
+        function parseVLESS() {
+            const url = document.getElementById('vlessUrl').value.trim();
+
+            // URL'nin vless:// ile başlayıp başlamadığını kontrol et
+            if (!url.startsWith('vless://')) {
+                alert("Lütfen geçerli bir VLESS URL'si girin (vless:// ile başlamalı).");
+                return;
+            }
+
+            try {
+                // VLESS URL'sini parçala
+                const urlWithoutComment = url.split('#')[0]; // # ile başlayan kısmı çıkar
+                const urlParts = urlWithoutComment.split('://')[1];
+                const [credentials, params] = urlParts.split('@');
+                const [id] = credentials.split(':');
+                const [hostAndPort, queryParams] = params.split('?');
+                const [address, port] = hostAndPort.split(':');
+                const query = new URLSearchParams(queryParams);
+
+                // Query parametrelerini oku
+                const host = query.get('host');
+                const path = query.get('path');
+                const security = query.get('security') || 'tls'; // Varsayılan olarak "tls" atanır
+                const encryption = query.get('encryption') || 'none';
+                const allowInsecure = query.get('allowInsecure') === 'true';
+
+                // Şablonu oluştur
+                const config = {
+                    log: { loglevel: "warning" },
+                    api: { services: ["StatsService"], tag: "api" },
+                    dns: {},
+                    routing: {
+                        rules: [
+                            { type: "field", outboundTag: "direct", ip: ["geoip:private"] },
+                            { type: "field", outboundTag: "proxy", domain: ["geosite:google"] }
+                        ]
+                    },
+                    policy: {},
+                    inbounds: [{
+                        port: 1080,
+                        protocol: "socks",
+                        settings: { auth: "noauth", udp: true, ip: "127.0.0.1" },
+                        streamSettings: { network: "tcp" },
+                        tag: "socks-in"
+                    }],
+                    outbounds: [
+                        {
+                            protocol: "vless",
+                            settings: {
+                                vnext: [{
+                                    address: address,
+                                    port: parseInt(port) || 443,
+                                    users: [{ id: id, encryption: encryption }]
+                                }]
+                            },
+                            streamSettings: {
+                                network: "ws",
+                                security: security,
+                                tlsSettings: {
+                                    serverName: host,
+                                    allowInsecure: allowInsecure
+                                },
+                                wsSettings: {
+                                    path: path,
+                                    headers: { Host: host }
+                                }
+                            },
+                            tag: "proxy"
+                        },
+                        { protocol: "freedom", settings: {}, streamSettings: { network: "tcp" }, tag: "direct" }
+                    ],
+                    stats: {}
+                };
+
+                // Config'i JSON formatına dönüştür ve kaydet
+                generatedConfig = JSON.stringify(config, null, 4);
+                document.getElementById('configOutput').textContent = generatedConfig;
+            } catch (error) {
+                alert("VLESS URL'si hatalı. Lütfen doğru formatta bir URL girin.");
+                console.error(error);
+            }
+        }
+
+        function copyToClipboard() {
+            if (!generatedConfig) {
+                alert("Henüz bir config oluşturulmadı!");
+                return;
+            }
+
+            navigator.clipboard.writeText(generatedConfig)
+                .then(() => {
+                    alert("Config panoya kopyalandı!");
+                })
+                .catch((err) => {
+                    alert("Config panoya kopyalanamadı: " + err);
+                });
+        }
+    </script>
+</body>
+</html>
