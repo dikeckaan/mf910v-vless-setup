@@ -35,12 +35,12 @@
 <body>
     <div class="container">
         <h1>VLESS Config Parser</h1>
-        <textarea id="vlessUrl" placeholder="VLESS URL'yi buraya yapıştırın"></textarea>
-        <button onclick="parseVLESS()">Parse ve Config Üret</button>
-        <button onclick="copyToClipboard()">Clipboard'a Kopyala</button>
-        <button onclick="downloadConfig()">Config'i İndir</button>
-        <h2>Oluşturulan Config</h2>
-        <pre id="configOutput">Çıktı burada görünecek...</pre>
+        <textarea id="vlessUrl" placeholder="Paste the VLESS URL here"></textarea>
+        <button onclick="parseVLESS()">Parse and Generate Config</button>
+        <button onclick="copyToClipboard()">Copy to Clipboard</button>
+        <button onclick="downloadConfig()">Download Config</button>
+        <h2>Generated Config</h2>
+        <pre id="configOutput">Output will appear here...</pre>
     </div>
     <script>
         let generatedConfig = '';
@@ -48,15 +48,15 @@
         function parseVLESS() {
             const url = document.getElementById('vlessUrl').value.trim();
 
-            // URL'nin vless:// ile başlayıp başlamadığını kontrol et
+            // Check if the URL starts with vless://
             if (!url.startsWith('vless://')) {
-                alert("Lütfen geçerli bir VLESS URL'si girin (vless:// ile başlamalı).");
+                alert("Please enter a valid VLESS URL (it should start with vless://).");
                 return;
             }
 
             try {
-                // VLESS URL'sini parçala
-                const urlWithoutComment = url.split('#')[0]; // # ile başlayan kısmı çıkar
+                // Parse the VLESS URL
+                const urlWithoutComment = url.split('#')[0]; // Remove any comment part
                 const urlParts = urlWithoutComment.split('://')[1];
                 const [credentials, params] = urlParts.split('@');
                 const [id] = credentials.split(':');
@@ -64,14 +64,14 @@
                 const [address, port] = hostAndPort.split(':');
                 const query = new URLSearchParams(queryParams);
 
-                // Query parametrelerini oku
+                // Read the query parameters
                 const host = query.get('host');
                 const path = query.get('path');
-                const security = query.get('security') || 'tls'; // Varsayılan olarak "tls" atanır
+                const security = query.get('security') || 'tls'; // Default is "tls"
                 const encryption = query.get('encryption') || 'none';
                 const allowInsecure = query.get('allowInsecure') === 'true';
 
-                // Şablonu oluştur
+                // Create the config template
                 const config = {
                     log: { loglevel: "warning" },
                     api: { services: ["StatsService"], tag: "api" },
@@ -119,33 +119,33 @@
                     stats: {}
                 };
 
-                // Config'i JSON formatına dönüştür ve kaydet
+                // Convert the config to JSON format and save
                 generatedConfig = JSON.stringify(config, null, 4);
                 document.getElementById('configOutput').textContent = generatedConfig;
             } catch (error) {
-                alert("VLESS URL'si hatalı. Lütfen doğru formatta bir URL girin.");
+                alert("The VLESS URL is invalid. Please enter a correctly formatted URL.");
                 console.error(error);
             }
         }
 
         function copyToClipboard() {
             if (!generatedConfig) {
-                alert("Henüz bir config oluşturulmadı!");
+                alert("No config has been generated yet!");
                 return;
             }
 
             navigator.clipboard.writeText(generatedConfig)
                 .then(() => {
-                    alert("Config panoya kopyalandı!");
+                    alert("Config copied to clipboard!");
                 })
                 .catch((err) => {
-                    alert("Config panoya kopyalanamadı: " + err);
+                    alert("Failed to copy config to clipboard: " + err);
                 });
         }
 
         function downloadConfig() {
             if (!generatedConfig) {
-                alert("Henüz bir config oluşturulmadı!");
+                alert("No config has been generated yet!");
                 return;
             }
 
