@@ -84,3 +84,11 @@ To completely remove the setup:
 ## Support
 
 For any issues or contributions, feel free to open an issue or submit a pull request.
+
+Here’s an example credit section you can include in the `README.md` file:
+
+
+## Credits
+
+- **GitHub**: [dikeckaan](https://github.com/dikeckaan)  
+- **Telegram**: [Kaan Dikeç](https://t.me/kaandikec)  
