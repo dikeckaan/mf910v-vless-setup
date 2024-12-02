@@ -1,9 +1,6 @@
 @echo off
 REM Disable echo for a cleaner script but provide status updates using echo commands.
 
-echo Starting installation process...
-
-
 REM Set the router address
 set ADDR=192.168.0.1
 
@@ -33,52 +30,10 @@ if NOT %ERRORLEVEL%==0 (
 echo Device connected successfully.
 echo Please wait...
 
-REM Continue with the rest of the script
-echo Pushing xray binary to /usr/bin...
-adb push xray /usr/bin
-timeout /t 1 >nul
-echo Setting executable permissions for xray...
-adb shell chmod +x /usr/bin/xray
-timeout /t 1 >nul
-
-echo Pushing geoip.dat to /cache...
-adb push geoip.dat /cache
-timeout /t 1 >nul
-echo Setting executable permissions for geoip.dat...
-adb shell chmod +x /cache/geoip.dat
-timeout /t 1 >nul
-
-echo Pushing geosite.dat to /cache...
-adb push geosite.dat /cache
-timeout /t 1 >nul
-echo Setting executable permissions for geosite.dat...
-adb shell chmod +x /cache/geosite.dat
-timeout /t 1 >nul
-
-echo Pushing config.json to /cache...
+echo Old config.json removing
+adb shell rm /cache/config.json
+echo Pushing new config.json to /cache...
 adb push config.json /cache/config.json
-timeout /t 1 >nul
-
-echo Creating symbolic link for geoip.dat in /usr/bin...
-adb shell ln -s /cache/geoip.dat /usr/bin/geoip.dat
-timeout /t 1 >nul
-echo Creating symbolic link for geosite.dat in /usr/bin...
-adb shell ln -s /cache/geosite.dat /usr/bin/geosite.dat
-timeout /t 1 >nul
-
-echo Creating proxy auto config file in /usr/zte_web/web...
-adb push proxy.pac /usr/zte_web/web
-adb shell chmod +x /usr/zte_web/web/proxy.pac
-timeout /t 1 >nul
-
-echo Pushing xray.sh to /etc/init.d...
-adb push xray.sh /etc/init.d
-timeout /t 1 >nul
-echo Setting executable permissions for xray.sh...
-adb shell chmod +x /etc/init.d/xray.sh
-timeout /t 1 >nul
-echo Adding xray.sh to system startup...
-adb shell update-rc.d xray.sh defaults
 timeout /t 1 >nul
 
 echo Rebooting the device to apply changes...
