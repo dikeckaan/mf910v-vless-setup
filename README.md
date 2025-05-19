@@ -150,3 +150,9 @@ Here’s an example credit section you can include in the `README.md` file:
 
 - **GitHub**: [dikeckaan](https://github.com/dikeckaan)  
 - **Telegram**: [Kaan Dikeç](https://t.me/kaandikec)  
+
+> ⚠️ **ENGLISH:**  
+> Please do not contact me via private messages regarding this repository. If you have any questions or issues, open a GitHub issue. Violators will be blocked without further notice.
+
+> ⚠️ **TÜRKÇE:**  
+> Bu repo hakkında lütfen özel mesaj atmayın. Sorunuz veya sorununuz varsa GitHub üzerinden issue açın. Aksi takdirde uyarı yapılmadan engelleneceksiniz.
