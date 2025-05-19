@@ -94,5 +94,5 @@ REM Completion message
 echo Script execution completed. Press any key to close the window.
 echo use proxy to access internet
 echo auto config url 192.168.0.1/proxy.pac or whatever your ip
-echo manual 192.168.0.1 or whatever your ip 1080 and 8080
+echo manual 192.168.0.1 or whatever your ip port 1080 and 8080
 pause
