@@ -1,37 +1,62 @@
 # MF910V VLESS Setup
 
-TÜRKÇE:
-BU REPO HAKKINDA BANA ÖZEL MESAJ İLE SORU SORMAYIN, SORUNUZ VARSA ISSUE AÇIN
+## ❗️LÜTFEN DİKKAT! / ATTENTION! / ВНИМАНИЕ! / ¡ATENCIÓN! / ATTENZIONE!
 
-ENGLISH:
-DO NOT MESSAGE ME PRIVATELY ABOUT THIS REPO, IF YOU HAVE A QUESTION, OPEN AN ISSUE
+---
 
-РУССКИЙ (RUSSIAN):
-НЕ ПИШИТЕ МНЕ В ЛИЧНЫЕ СООБЩЕНИЯ ПО ПОВОДУ ЭТОГО РЕПОЗИТОРИЯ, ЕСЛИ У ВАС ЕСТЬ ВОПРОС — СОЗДАЙТЕ ISSUE
+### 🔒 **TÜRKÇE**
+> 🛑 **BU REPO HAKKINDA BANA ÖZEL MESAJ İLE SORU SORMAYIN, SORUNUZ VARSA ISSUE AÇIN**
 
-ESPAÑOL (SPANISH):
-NO ME ENVÍES MENSAJES PRIVADOS SOBRE ESTE REPOSITORIO, SI TIENES UNA PREGUNTA, ABRE UN ISSUE
+---
 
-FRANÇAIS (FRENCH):
-NE M'ENVOYEZ PAS DE MESSAGES PRIVÉS CONCERNANT CE REPO, SI VOUS AVEZ UNE QUESTION, OUVREZ UN ISSUE
+### 🔵 **ENGLISH**
+> 🛑 **DO NOT MESSAGE ME PRIVATELY ABOUT THIS REPO, IF YOU HAVE A QUESTION, OPEN AN ISSUE**
 
-DEUTSCH (GERMAN):
-SCHREIBEN SIE MIR KEINE PRIVATNACHRICHTEN ZU DIESEM REPO, WENN SIE EINE FRAGE HABEN, ERÖFFNEN SIE EIN ISSUE
+---
 
-ITALIANO (ITALIAN):
-NON INVIARMI MESSAGGI PRIVATI SU QUESTO REPO, SE HAI UNA DOMANDA, APRI UN ISSUE
+### 🔴 **РУССКИЙ (RUSSIAN)**
+> 🛑 **НЕ ПИШИТЕ МНЕ В ЛИЧКУ ПО ПОВОДУ ЭТОГО РЕПОЗИТОРИЯ, ЕСЛИ ЕСТЬ ВОПРОС — СОЗДАЙТЕ ISSUE**
 
-PORTUGUÊS (PORTUGUESE):
-NÃO ME ENVIE MENSAGENS PRIVADAS SOBRE ESTE REPOSITÓRIO, SE TIVER ALGUMA DÚVIDA, ABRA UM ISSUE
+---
 
-中文 (CHINESE - Simplified):
-请不要就此仓库私信我，如有问题，请创建 ISSUE
+### 🟡 **ESPAÑOL (SPANISH)**
+> 🛑 **NO ME ENVÍES MENSAJES PRIVADOS SOBRE ESTE REPOSITORIO, SI TIENES UNA PREGUNTA, ABRE UN ISSUE**
 
-日本語 (JAPANESE):
-このリポジトリについて個人的にメッセージを送らないでください。質問がある場合は ISSUE を作成してください
+---
 
-한국어 (KOREAN):
-이 리포지토리에 대해 개인 메시지를 보내지 마세요. 질문이 있다면 ISSUE를 열어주세요
+### 🟢 **FRANÇAIS (FRENCH)**
+> 🛑 **NE M'ENVOYEZ PAS DE MESSAGES PRIVÉS CONCERNANT CE REPO, SI VOUS AVEZ UNE QUESTION, OUVREZ UN ISSUE**
+
+---
+
+### 🟣 **DEUTSCH (GERMAN)**
+> 🛑 **SCHREIBEN SIE MIR KEINE PRIVATNACHRICHTEN ZU DIESEM REPO, WENN SIE EINE FRAGE HABEN, ERÖFFNEN SIE EIN ISSUE**
+
+---
+
+### 🟠 **ITALIANO (ITALIAN)**
+> 🛑 **NON INVIARMI MESSAGGI PRIVATI SU QUESTO REPO, SE HAI UNA DOMANDA, APRI UN ISSUE**
+
+---
+
+### ⚫ **PORTUGUÊS (PORTUGUESE)**
+> 🛑 **NÃO ME ENVIE MENSAGENS PRIVADAS SOBRE ESTE REPOSITÓRIO, SE TIVER ALGUMA DÚVIDA, ABRA UM ISSUE**
+
+---
+
+### 🔘 **中文 (CHINESE - SIMPLIFIED)**
+> 🛑 **请不要就此仓库私信我，如有问题，请创建 ISSUE**
+
+---
+
+### ⚪ **日本語 (JAPANESE)**
+> 🛑 **このリポジトリについて個人的にメッセージを送らないでください。質問がある場合は ISSUE を作成してください**
+
+---
+
+### 🧿 **한국어 (KOREAN)**
+> 🛑 **이 리포지토리에 대해 개인 메시지를 보내지 마세요. 질문이 있다면 ISSUE를 열어주세요**
+
 
 This repository provides all the necessary files and instructions to configure the ZTE MF910V device with the VLESS protocol. The setup is optimized for Windows, with scripts for installation, uninstallation, and configuration updates.
 
