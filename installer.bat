@@ -81,7 +81,7 @@ echo Adding xray.sh to system startup...
 adb shell update-rc.d xray.sh defaults
 timeout /t 1 >nul
 
-echo Rebooting the device to apply changes...
+echo Rebooting the device to apply changes... If you see error after reboot, its OK :)
 adb shell reboot
 
 REM Handle errors
@@ -92,4 +92,7 @@ exit /b 1
 
 REM Completion message
 echo Script execution completed. Press any key to close the window.
+echo use proxy to access internet
+echo auto config url 192.168.0.1/proxy.pac (or whatever)
+echo manual 192.168.0.1 (or whatever) 1080 and 8080
 pause
